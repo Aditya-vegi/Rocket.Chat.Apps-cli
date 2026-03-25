@@ -52,6 +52,7 @@ export default class Create extends Command {
         this.log('');
 
         const { flags } = this.parse(Create);
+        this.log(chalk.gray('(Use lowercase letters, numbers, and hyphens only, e.g., my-app)'));
         info.name = flags.name ? flags.name : await cli.prompt(chalk.bold('   App Name'));
         info.nameSlug = VariousUtils.slugify(info.name);
         info.classFile = `${ pascalCase(info.name) }App.ts`;
