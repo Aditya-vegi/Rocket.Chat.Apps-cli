@@ -61,6 +61,12 @@ export default class Create extends Command {
         info.author.homepage = flags.homepage ? flags.homepage : await cli.prompt(chalk.bold('   Author\'s Home Page'));
         info.author.support = flags.support ? flags.support : await cli.prompt(chalk.bold('   Author\'s Support Page'));
 
+
+        if (!/^[a-z0-9-]+$/i.test(info.name)) {
+            this.error('App name must contain only letters, numbers, and hyphens (no spaces or special characters)');
+            return;
+        }
+
         const folder = path.join(process.cwd(), info.nameSlug);
 
         cli.action.start(`Creating a Rocket.Chat App in ${ chalk.green(folder) }`);
