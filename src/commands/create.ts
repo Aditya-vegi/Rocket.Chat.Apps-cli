@@ -46,7 +46,7 @@ export default class Create extends Command {
         const appType = await cli.prompt(
             chalk.bold('   App Type (chatbot/integration)'),
             { default: 'chatbot' }
-        );
+        ).then((input: string) => input.toLowerCase());
 
         this.log(`Selected App Type: ${chalk.green(appType)}`);
         this.log('');
